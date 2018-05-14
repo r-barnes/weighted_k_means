@@ -32,9 +32,9 @@ wkmeans.find_centers(method='++')
 wkmeans.plot_clusters(wkmeans.plot_clusters.calls)
 
 # We're done so print some useful info:
-print 'The End!'
-print '\tRun time: ', datetime.now() - startTime
-print '\tTotal runs: ', wkmeans._cluster_points.calls
-print '\tNumber of unique items per cluster: ', [len(x) for x in
-                                                 wkmeans.clusters]
-print '\tNumber of items per cluster: ', wkmeans.counts_per_cluster
+print('The End!')
+print('\tRun time: ', datetime.now() - startTime)
+print('\tTotal runs: ', wkmeans._cluster_points.calls)
+print('\tNumber of unique items per cluster: ', [len(x) for x in
+                                                 wkmeans.clusters])
+print('\tNumber of items per cluster: ', wkmeans.counts_per_cluster)

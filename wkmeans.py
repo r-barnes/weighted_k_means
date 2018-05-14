@@ -179,7 +179,7 @@ class WKMeans():
                 cs = cm.spectral(1. * m / K)
                 # cs = next(palette)
                 # b) plot the data points in the cluster;
-                plt.plot(zip(*clus[m])[0], zip(*clus[m])[1], '.',
+                plt.plot(list(zip(*clus[m]))[0], list(zip(*clus[m]))[1], '.',
                          markersize=8, color=cs, alpha=0.5)
                 # and c) plot the centroid of the cluster.
                 plt.plot(mu[m][0], mu[m][1], 'o', marker='*',
@@ -340,7 +340,8 @@ class WKMeans():
         X = self.X
         K = self.K
         # Previous centroids set to random values.
-        self.old_mu = random.sample(X, K)
+        rand_idx    = np.random.randint(len(X), size=K) #Get indices of random rows
+        self.old_mu = X[rand_idx,:]                     #Get the random rows
 
         if method == 'random':
             # If method of initialisation is not k++, use random centeroids.
@@ -400,7 +401,8 @@ class KPlusPlus(WKMeans):
 
     def init_centers(self):
         """Initialise the centers."""
-        self.mu = random.sample(self.X, 1)
+        rand_row = np.random.randint(0,len(self.X)) #Choose the index of a random row
+        self.mu  = [self.X[rand_row,:]]
         while len(self.mu) < self.K:
             self._dist_from_centers()
             self.mu.append(self._choose_next_center())
